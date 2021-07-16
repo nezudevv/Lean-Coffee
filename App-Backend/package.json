@@ -5,6 +5,7 @@
   "main": "index.js",
   "license": "MIT",
   "dependencies": {
+    "aws-sdk": "^2.947.0",
     "cors": "^2.8.5",
     "express": "^4.17.1"
   }
