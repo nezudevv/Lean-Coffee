@@ -20,4 +20,22 @@ const getTopics = async () => {
   return topics;
 };
 
-export { getTopics };
+const addOrUpdateTopic = async topic => {
+  const params = {
+    TableName: TABLE_NAME,
+    Item: topic,
+  };
+  return await dynamoClient.put(params).promise();
+};
+
+const deleteTopic = async id => {
+  const params = {
+    TableName: TABLE_NAME,
+    Key: {
+      id,
+    },
+  };
+  return await dynamoClient.delete(params).promise();
+};
+
+export { getTopics, addOrUpdateTopic, deleteTopic };
