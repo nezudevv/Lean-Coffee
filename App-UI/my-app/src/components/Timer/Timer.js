@@ -1,19 +1,21 @@
-export default function Timer() {
-  var timeleft = 10;
-  var downloadTimer = setInterval(function () {
-    if (timeleft <= 0) {
-      clearInterval(downloadTimer);
-      document.getElementById("countdown").innerHTML = "Finished";
-    } else {
-      document.getElementById("countdown").innerHTML =
-        timeleft + " seconds remaining";
-    }
-    timeleft -= 1;
-  }, 1000);
+import React from "react";
+import Sketch from "react-p5";
 
-  return (
-    <div>
-      <div id='countdown'></div>
-    </div>
-  );
+export default function Timer() {
+  function Timer() {
+    let a = 300;
+    let b = 300;
+    let setup = (p5, canvasParentRef) => {
+      //Canvas of size 1000x800
+      let xyz = p5.createCanvas(1000, 800).parent(canvasParentRef);
+    };
+    let draw = p5 => {
+      p5.background("rgb(100%,0%,10%)");
+    };
+    return (
+      <div className='App'>
+        <Sketch setup={setup} draw={draw} className='App' />
+      </div>
+    );
+  }
 }

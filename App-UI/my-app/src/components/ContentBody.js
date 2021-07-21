@@ -17,23 +17,33 @@ export default function ContentBody({ topic, getTopics, id }) {
 
   function inputChangeHandler(e) {
     setInputChange(e.target.value);
-    console.log(inputChange);
   }
 
   async function submitTopicTitleChange() {
-    try {
-      const updatedTopic = { topicTitle: inputChange };
-      const info = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedTopic),
-      };
-      await fetch(`http://localhost:8000/api/topic/${id}`, info);
-    } catch (err) {
-      console.log(err);
+    if (inputChange === "") {
+      alert("Field must not be empty.");
+    } else {
+      try {
+        const updatedTopic = { topicTitle: inputChange };
+        const info = {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(updatedTopic),
+        };
+        await fetch(`http://localhost:8000/api/topic/${id}`, info);
+      } catch (err) {
+        console.log(err);
+      }
+
+      changeTopicClickedToFalse();
     }
+    getTopics();
+  }
+
+  function changeTopicClickedToFalse() {
+    setIsTopicClicked(false);
   }
 
   return (

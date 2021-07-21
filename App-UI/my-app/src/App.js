@@ -3,9 +3,11 @@ import "./Styles/App.scss";
 import ContentBody from "./components/ContentBody.js";
 import "./Styles/Reset.css";
 import axios from "axios";
+import Timer from "./components/Timer/Timer.js";
 
 export default function App() {
   // State
+
   const [topics, setTopics] = useState([]);
   const [topicInput, setTopicInput] = useState("");
 
@@ -45,8 +47,8 @@ export default function App() {
         body: JSON.stringify(newTopic),
       };
       await fetch("http://localhost:8000/api", info);
+      getTopics();
     }
-    getTopics();
   }
 
   return (
@@ -55,12 +57,14 @@ export default function App() {
         <h1>Input Topic Below</h1>
         <input onInput={topicInputHandler}></input>
         <button onClick={createTopic}>Submit</button>
+        {}
         {topics.map(topic => (
           <div key={topic.id}>
             <ContentBody id={topic.id} topic={topic} getTopics={getTopics} />
           </div>
         ))}
       </div>
+      <p id='timer'>____</p>
     </div>
   );
 }
