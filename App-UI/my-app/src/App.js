@@ -64,7 +64,9 @@ export default function App() {
           </div>
         ))}
       </div>
-      <p id='timer'>____</p>
+      {/* <div id='pause'></div>
+      <div id='resume'></div> */}
+      {/* <Timer /> */}
     </div>
   );
 }
