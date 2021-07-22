@@ -4,6 +4,10 @@ import ContentBody from "./components/ContentBody.js";
 import "./Styles/Reset.css";
 import axios from "axios";
 import Timer from "./components/Timer/Timer.js";
+import Header from "./components/Header.js";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import ContentBodyParent from "./components/ContentBodyParent.js";
+import Login from "./components/Login.js";
 
 export default function App() {
   // State
@@ -52,19 +56,29 @@ export default function App() {
   }
 
   return (
-    <div className='App'>
-      <div>
-        <h1>Input Topic Below</h1>
-        <input onInput={topicInputHandler}></input>
-        <button onClick={createTopic}>Submit</button>
+    <Router>
+      <div className='App'>
+        <div className='App-Header'>
+          <Header />
+        </div>
+        <div className='App-Body'>
+          <Switch>
+            <Route exact path='/'>
+              <ContentBodyParent
+                topics={topics}
+                getTopics={getTopics}
+                topicInputHandler={topicInputHandler}
+                createTopic={createTopic}
+              />
+            </Route>
+            <Route exact path='/login'>
+              <Login />
+            </Route>
+          </Switch>
+        </div>
 
-        {topics.map(topic => (
-          <div key={topic.id}>
-            <ContentBody id={topic.id} topic={topic} getTopics={getTopics} />
-          </div>
-        ))}
+        <Timer />
       </div>
-      <Timer />
-    </div>
+    </Router>
   );
 }
