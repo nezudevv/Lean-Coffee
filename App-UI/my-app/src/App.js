@@ -57,16 +57,14 @@ export default function App() {
         <h1>Input Topic Below</h1>
         <input onInput={topicInputHandler}></input>
         <button onClick={createTopic}>Submit</button>
-        {}
+
         {topics.map(topic => (
           <div key={topic.id}>
             <ContentBody id={topic.id} topic={topic} getTopics={getTopics} />
           </div>
         ))}
       </div>
-      {/* <div id='pause'></div>
-      <div id='resume'></div> */}
-      {/* <Timer /> */}
+      <Timer />
     </div>
   );
 }
