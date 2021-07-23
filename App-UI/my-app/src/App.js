@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import "./Styles/App.scss";
-import ContentBody from "./components/ContentBody.js";
 import "./Styles/Reset.css";
+import "./Styles/Header.scss";
+import "./Styles/ContentBody.scss";
+
+// import ContentBody from "./components/ContentBody.js";
 import axios from "axios";
-import Timer from "./components/Timer/Timer.js";
+// import Timer from "./components/Timer/Timer.js";
 import Header from "./components/Header.js";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import ContentBodyParent from "./components/ContentBodyParent.js";
@@ -56,20 +59,22 @@ export default function App() {
   }
 
   return (
+    // Using React-Router for Home/Login Pages
     <Router>
       <div className='App'>
-        <div className='App-Header'>
-          <Header />
-        </div>
+        <Header />
+
         <div className='App-Body'>
           <Switch>
             <Route exact path='/'>
-              <ContentBodyParent
-                topics={topics}
-                getTopics={getTopics}
-                topicInputHandler={topicInputHandler}
-                createTopic={createTopic}
-              />
+              <div>
+                <ContentBodyParent
+                  topics={topics}
+                  getTopics={getTopics}
+                  topicInputHandler={topicInputHandler}
+                  createTopic={createTopic}
+                />
+              </div>
             </Route>
             <Route exact path='/login'>
               <Login />
@@ -77,7 +82,7 @@ export default function App() {
           </Switch>
         </div>
 
-        <Timer />
+        {/* <Timer /> */}
       </div>
     </Router>
   );

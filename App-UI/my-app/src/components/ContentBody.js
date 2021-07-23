@@ -47,7 +47,7 @@ export default function ContentBody({ topic, getTopics, id }) {
   }
 
   return (
-    <div key={id} className='Body-Container'>
+    <div key={id} className='Card-Topics'>
       {!isTopicClicked ? (
         <div>
           <p

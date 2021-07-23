@@ -1,0 +1,18 @@
+// .App-Header {
+//   display: flex;
+//   border: solid red;
+
+// }
+.Header-Container {
+  display: flex;
+  height: 70px;
+  width: 100%;
+  border: solid rgb(153, 108, 41);
+  justify-content: center;
+  align-items: center;
+}
+.Header-Content-Wrapper {
+  // align-content: center;
+  border: solid blue;
+  display: inline-block;
+}

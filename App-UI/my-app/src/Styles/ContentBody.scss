@@ -1,0 +1,40 @@
+.App-Body {
+  display: flex;
+  flex-direction: column;
+  border: solid blue;
+  width: 100%;
+  height: 100%;
+}
+.Main-Topic-Container {
+  display: flex;
+  flex-direction: column;
+  border: solid rgb(18, 67, 110);
+  height: 100%;
+  width: 100%;
+}
+.Topic-Submit-Wrapper {
+  display: flex;
+  flex-direction: column;
+  border: solid blueviolet;
+  align-items: center;
+  // justify-content: center;
+  width: 100%;
+}
+.Card-Topics-Container {
+  display: flex;
+  flex-direction: row;
+  border: solid rgb(81, 153, 216);
+  height: 100%;
+}
+
+.Card-Topics {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(115, 40, 189);
+  box-shadow: 5px 5px 5px rgb(33, 11, 53);
+  margin: 5px 5px;
+  width: 130px;
+  height: 175px;
+  align-items: center;
+  justify-content: center;
+}
