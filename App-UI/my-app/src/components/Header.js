@@ -5,8 +5,12 @@ export default function Header() {
   return (
     <div className='Header-Container'>
       <div className='Header-Content-Wrapper'>
-        <Link to='/'>Home</Link>
-        <Link to='/login'>Login</Link>
+        <div className='Home-Nav'>
+          <Link to='/'>Home</Link>
+        </div>
+        <div className='Login-Nav'>
+          <Link to='/login'>Login</Link>
+        </div>
       </div>
     </div>
   );

@@ -47,17 +47,25 @@ export default function ContentBody({ topic, getTopics, id }) {
   }
 
   return (
-    <div key={id} className='Card-Topics'>
+    <div key={id}>
       {!isTopicClicked ? (
-        <div>
-          <p
-            onClick={() => {
-              setIsTopicClicked(true);
-            }}
-          >
-            {topic.topicTitle}
-          </p>
-          <button onClick={deleteTopic}>X</button>
+        <div className='Card-Topics-Wrapper'>
+          <div className='Card-Topics'>
+            <p
+              className='Card-Title'
+              onClick={() => {
+                setIsTopicClicked(true);
+              }}
+            >
+              {topic.topicTitle}
+            </p>
+          </div>
+          <div className='Bottom-Card-Portion'>
+            <div className='Bottom-Card-Portion-Text'>vote</div>
+            <div className='Bottom-Card-Portion-Text2' onClick={deleteTopic}>
+              delete
+            </div>
+          </div>
         </div>
       ) : (
         <div>

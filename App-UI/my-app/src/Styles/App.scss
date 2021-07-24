@@ -1,8 +1,9 @@
 .App {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100%;
   width: 100vw;
-  background-image: url(/Styles/710079.jpg);
+  background-image: linear-gradient(rgb(252, 252, 252), rgb(233, 233, 233));
   background-size: cover;
+  // border: solid blue;
 }

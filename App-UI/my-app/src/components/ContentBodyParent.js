@@ -10,16 +10,21 @@ export default function ContentBodyParent({
   return (
     <div className='Main-Topic-Container'>
       <div className='Topic-Submit-Wrapper'>
-        <h1>Input Topic Below</h1>
-        <input onInput={topicInputHandler}></input>
+        <h1 className='Main-Title'>Input Topic</h1>
+        <input
+          placeholder={"Add new topic..."}
+          onInput={topicInputHandler}
+        ></input>
         <button onClick={createTopic}>Submit</button>
       </div>
-      <div className='Card-Topics-Container'>
-        {topics.map(topic => (
-          <div key={topic.id}>
-            <ContentBody id={topic.id} topic={topic} getTopics={getTopics} />
-          </div>
-        ))}
+      <div className='Topic-Child-Container'>
+        <div className='Topic-Child-Container2'>
+          {topics.map(topic => (
+            <div className='Card-Topics-Container' key={topic.id}>
+              <ContentBody id={topic.id} topic={topic} getTopics={getTopics} />
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

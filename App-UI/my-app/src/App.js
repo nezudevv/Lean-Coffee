@@ -62,13 +62,13 @@ export default function App() {
     // Using React-Router for Home/Login Pages
     <Router>
       <div className='App'>
-        <Header />
-
+        <Header className='Header' />
         <div className='App-Body'>
           <Switch>
             <Route exact path='/'>
               <div>
                 <ContentBodyParent
+                  className='Topic-Child-Container'
                   topics={topics}
                   getTopics={getTopics}
                   topicInputHandler={topicInputHandler}
