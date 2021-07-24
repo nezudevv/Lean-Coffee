@@ -17,11 +17,8 @@
 .Topic-Submit-Wrapper {
   display: flex;
   flex-direction: column;
-  // border: solid blueviolet;
   align-items: center;
-  // justify-content: center;
   input {
-    // color: rgb(222 222 222);
     font-family: "Nunito", sans-serif;
     font-size: 1rem;
     text-transform: capitalize;
@@ -116,4 +113,21 @@
   font-size: 1.5rem;
   text-transform: capitalize;
   font-weight: 700;
+}
+
+.Start-Discussion-Button {
+  display: flex;
+  text-transform: capitalize;
+  font-weight: 700;
+  color: white;
+  border: 0;
+  justify-content: center;
+  align-items: center;
+  margin-left: 675px;
+  border-radius: 30px;
+  height: 45px;
+  width: 170px;
+  font-family: "Nunito", sans-serif;
+  font-size: 1rem;
+  background-image: linear-gradient(to right, rgb(234 43 91), rgb(248 162 74));
 }
