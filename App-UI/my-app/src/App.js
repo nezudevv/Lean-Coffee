@@ -59,9 +59,10 @@ export default function App() {
   }
 
   return (
-    // Using React-Router for Home/Login Pages
-    <Router>
-      <div className='App'>
+    // Using React-Router for Home/Session Pages
+
+    <div className='App'>
+      <Router>
         <Header className='Header' />
         <div className='App-Body'>
           <Switch>
@@ -82,9 +83,7 @@ export default function App() {
             </Route>
           </Switch>
         </div>
-
-        {/* <Timer /> */}
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }

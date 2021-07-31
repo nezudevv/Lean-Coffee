@@ -24,7 +24,9 @@ export default function ContentBodyParent({
           placeholder={"Add new topic..."}
           onInput={topicInputHandler}
         ></input>
-        <button onClick={createTopic}>Submit</button>
+        <button className='submit-button' onClick={createTopic}>
+          Submit
+        </button>
       </div>
 
       <div className='Topic-Child-Container'>

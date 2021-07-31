@@ -1,9 +1,9 @@
 .App {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vw;
   width: 100vw;
-  background-image: linear-gradient(rgb(252, 252, 252), rgb(233, 233, 233));
+  background-color: #282c34;
   background-size: cover;
   // border: solid blue;
 }
