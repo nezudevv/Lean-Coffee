@@ -130,4 +130,11 @@
   font-family: "Nunito", sans-serif;
   font-size: 1rem;
   background-image: linear-gradient(to right, rgb(234 43 91), rgb(248 162 74));
+  .Start-Discussion-Button-Link {
+    text-decoration: none;
+    color: white;
+    text-transform: capitalize;
+    font-weight: 700;
+    font-family: "Nunito", sans-serif;
+  }
 }

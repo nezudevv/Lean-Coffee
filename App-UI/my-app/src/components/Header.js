@@ -8,9 +8,7 @@ export default function Header() {
         <div className='Home-Nav'>
           <Link to='/'>Home</Link>
         </div>
-        <div className='Login-Nav'>
-          <Link to='/login'>Login</Link>
-        </div>
+        <div className='Login-Nav'>{/* <Link to='/discussion'></Link> */}</div>
       </div>
     </div>
   );

@@ -3,30 +3,28 @@ import "./Styles/App.scss";
 import "./Styles/Reset.css";
 import "./Styles/Header.scss";
 import "./Styles/ContentBody.scss";
-
 // import ContentBody from "./components/ContentBody.js";
 import axios from "axios";
 // import Timer from "./components/Timer/Timer.js";
 import Header from "./components/Header.js";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ContentBodyParent from "./components/ContentBodyParent.js";
-import Login from "./components/Login.js";
+import DiscussionSession from "./components/DiscussionSession.js";
 
 export default function App() {
   // State
-
   const [topics, setTopics] = useState([]);
   const [topicInput, setTopicInput] = useState("");
 
   useEffect(() => {
     getTopics();
-  }, []);
+  }, [topics.id]);
 
   // Functions;
   async function getTopics() {
     try {
       const response = await axios.get("http://localhost:8000/api/topics");
-      const topics = response.data;
+      const topics = await response.data;
       setTopics(topics.Items);
     } catch (err) {
       console.log("Did not fetch topics!!", err);
@@ -36,6 +34,8 @@ export default function App() {
   function topicInputHandler(e) {
     setTopicInput(e.target.value);
   }
+  console.log(topicInput);
+  console.log(topics);
 
   async function createTopic() {
     const newTopic = {
@@ -54,8 +54,8 @@ export default function App() {
         body: JSON.stringify(newTopic),
       };
       await fetch("http://localhost:8000/api", info);
-      getTopics();
     }
+    getTopics();
   }
 
   return (
@@ -71,13 +71,14 @@ export default function App() {
                   className='Topic-Child-Container'
                   topics={topics}
                   getTopics={getTopics}
+                  input={topicInput}
                   topicInputHandler={topicInputHandler}
                   createTopic={createTopic}
                 />
               </div>
             </Route>
-            <Route exact path='/login'>
-              <Login />
+            <Route exact path='/discussion'>
+              <DiscussionSession />
             </Route>
           </Switch>
         </div>

@@ -1,5 +1,5 @@
 import AWS from "aws-sdk";
-import { accessKeyId, sAccessKey } from "./conf.js";
+import { accessKeyId, sAccessKey } from "./config.js";
 
 AWS.config.update({
   region: "us-east-2",
