@@ -3,4 +3,13 @@ This is my Lean Coffee app. The layout is inspired by several apps on the market
 
 This project is used to further solidify my knowledge in designing and creating fullstack apps. 
 
-REACT. NODEJS. DYNAMODB.
+# Libraries used
+REACT
+* axios
+
+NODEJS
+* express
+* dotenv
+
+DYNAMODB
+
