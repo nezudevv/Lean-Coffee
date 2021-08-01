@@ -60,7 +60,6 @@ export default function App() {
 
   return (
     // Using React-Router for Home/Session Pages
-
     <div className='App'>
       <Router>
         <Header className='Header' />
