@@ -1,12 +1,13 @@
 import AWS from "aws-sdk";
-import { accessKeyId, sAccessKey } from "./config.js";
 import dotenv from "dotenv";
+
+dotenv.config();
 
 AWS.config.update({
   region: "us-east-2",
   endpoint: "dynamodb.us-east-2.amazonaws.com",
-  accessKeyId: accessKeyId,
-  secretAccessKey: sAccessKey,
+  accessKeyId: process.env.ACCESS_KEY_ID,
+  secretAccessKey: process.env.SECRET_ACCESS_KEY,
 });
 
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
