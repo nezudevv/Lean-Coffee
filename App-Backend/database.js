@@ -1,5 +1,6 @@
 import AWS from "aws-sdk";
 import { accessKeyId, sAccessKey } from "./config.js";
+import dotenv from "dotenv";
 
 AWS.config.update({
   region: "us-east-2",
