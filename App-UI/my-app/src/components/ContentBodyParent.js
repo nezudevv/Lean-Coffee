@@ -1,14 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
+import { TopicContext } from "./Contexts/TopicContext";
 import ContentBody from "./ContentBody";
 import { Link } from "react-router-dom";
-
 export default function ContentBodyParent({
-  topics,
-  getTopics,
-  topicInputHandler,
   createTopic,
+  getTopics,
   input,
+  topicInputHandler,
 }) {
+  // const topicContext = useContext(TopicContext);
+  const { topics } = useContext(TopicContext);
   return (
     <div className='Main-Topic-Container'>
       <div className='Topic-Submit-Wrapper'>
@@ -28,7 +29,6 @@ export default function ContentBodyParent({
           Submit
         </button>
       </div>
-
       <div className='Topic-Child-Container'>
         <div className='Topic-Child-Container2'>
           {topics.map(topic => (

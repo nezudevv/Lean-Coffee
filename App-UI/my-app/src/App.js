@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import axios from "axios";
 import "./Styles/App.scss";
 import "./Styles/Reset.css";
 import "./Styles/Header.scss";
 import "./Styles/ContentBody.scss";
-// import ContentBody from "./components/ContentBody.js";
-import axios from "axios";
-// import Timer from "./components/Timer/Timer.js";
 import Header from "./components/Header.js";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import ContentBodyParent from "./components/ContentBodyParent.js";
 import DiscussionSession from "./components/DiscussionSession.js";
+import { TopicContext } from "./components/Contexts/TopicContext";
 
 export default function App() {
   // State
@@ -18,7 +17,7 @@ export default function App() {
 
   useEffect(() => {
     getTopics();
-  }, [topics.id]);
+  }, []);
 
   // Functions;
   async function getTopics() {
@@ -27,15 +26,13 @@ export default function App() {
       const topics = await response.data;
       setTopics(topics.Items);
     } catch (err) {
-      console.log("Did not fetch topics!!", err);
+      console.log("Did not fetch topics: ", err);
     }
   }
 
   function topicInputHandler(e) {
     setTopicInput(e.target.value);
   }
-  console.log(topicInput);
-  console.log(topics);
 
   async function createTopic() {
     const newTopic = {
@@ -55,31 +52,32 @@ export default function App() {
       };
       await fetch("http://localhost:8000/api", info);
     }
-    getTopics();
   }
 
   return (
     // Using React-Router for Home/Session Pages
+
     <div className='App'>
       <Router>
         <Header className='Header' />
         <div className='App-Body'>
           <Switch>
-            <Route exact path='/'>
-              <div>
-                <ContentBodyParent
-                  className='Topic-Child-Container'
-                  topics={topics}
-                  getTopics={getTopics}
-                  input={topicInput}
-                  topicInputHandler={topicInputHandler}
-                  createTopic={createTopic}
-                />
-              </div>
-            </Route>
-            <Route exact path='/discussion'>
-              <DiscussionSession />
-            </Route>
+            <TopicContext.Provider value={{ topics }}>
+              <Route exact path='/'>
+                <div>
+                  <ContentBodyParent
+                    className='Topic-Child-Container'
+                    createTopic={createTopic}
+                    getTopics={getTopics}
+                    input={topicInput}
+                    topicInputHandler={topicInputHandler}
+                  />
+                </div>
+              </Route>
+              <Route exact path='/discussion'>
+                <DiscussionSession />
+              </Route>
+            </TopicContext.Provider>
           </Switch>
         </div>
       </Router>
