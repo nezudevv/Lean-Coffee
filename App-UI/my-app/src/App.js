@@ -33,6 +33,7 @@ export default function App() {
     }
   }
 
+  // Grabs input data to eventually use when 'add topic' button is clicked.
   function topicInputHandler(e) {
     setTopicInput(e.target.value);
   }
