@@ -54,7 +54,7 @@ export default function App() {
       await fetch("http://localhost:8000/api", info);
     }
   }
-
+  getTopics();
   return (
     // Using React-Router for Home/Session Pages
 
@@ -63,7 +63,7 @@ export default function App() {
         <Header className='Header' />
         <div className='App-Body'>
           <Switch>
-            <TopicContext.Provider value={{ topics, setTopics }}>
+            <TopicContext.Provider value={{ topics, getTopics }}>
               <Route exact path='/'>
                 <div>
                   <ContentBodyParent

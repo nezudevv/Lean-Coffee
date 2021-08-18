@@ -1,20 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { TopicContext } from "../Contexts/TopicContext";
-import Column from "./Column.js";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 
-// const som = [
-//   { id: uuidv4(), content: "asdf" },
-//   {
-//     id: uuidv4(),
-//     content: "lose",
-//   },
-// ];
-// console.log("som: ", som);
-
 export default function DragandDropContainer() {
-  const { topics, setTopics } = useContext(TopicContext);
+  const { topics, getTopics } = useContext(TopicContext);
+
+  useEffect(() => {
+    getTopics();
+  }, []);
   console.log("topics: ", topics);
   const columnsFromBackend = {
     [uuidv4()]: {
@@ -22,15 +16,11 @@ export default function DragandDropContainer() {
       items: topics,
     },
     [uuidv4()]: {
-      name: "To do",
+      name: "Current Discussion",
       items: [],
     },
     [uuidv4()]: {
-      name: "In Progress",
-      items: [],
-    },
-    [uuidv4()]: {
-      name: "Done",
+      name: "Completed",
       items: [],
     },
   };

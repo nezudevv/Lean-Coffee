@@ -6,7 +6,7 @@ import DragandDropContainer from "./DragandDrop/DragandDropContainer.js";
 export default function DiscussionSession() {
   const { topics } = useContext(TopicContext);
   return (
-    <div>
+    <div style={{ color: "white" }}>
       Session Started.
       <Timer />
       <DragandDropContainer />
