@@ -10,6 +10,10 @@ REACT
 * axios
 * Router
 * Context
+
 NODEJS
 * express
 * dotenv
+
+Styling
+* SASS
