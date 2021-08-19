@@ -5,10 +5,11 @@ This is my Lean Coffee app. The layout is inspired by several apps on the market
 
 This project is used to further solidify my knowledge in designing and creating fullstack apps. 
 
-# Modules used
+
 REACT
 * axios
-
+* Router
+* Context
 NODEJS
 * express
 * dotenv
