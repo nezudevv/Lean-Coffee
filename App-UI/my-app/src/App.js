@@ -40,6 +40,7 @@ export default function App() {
       id: uuidv4().toString(),
       topicTitle: topicInput,
     };
+    setTopicInput("");
     if (topicInput === "") {
       alert("Field must not be empty.");
     } else {
@@ -55,6 +56,7 @@ export default function App() {
     }
   }
   getTopics();
+
   return (
     // Using React-Router for Home/Session Pages
 
