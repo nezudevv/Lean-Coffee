@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import "./Styles/App.scss";
 import "./Styles/Reset.css";
@@ -36,9 +37,10 @@ export default function App() {
 
   async function createTopic() {
     const newTopic = {
-      id: Date.now().toString(),
+      id: uuidv4().toString(),
       topicTitle: topicInput,
     };
+    setTopicInput("");
     if (topicInput === "") {
       alert("Field must not be empty.");
     } else {
@@ -53,6 +55,7 @@ export default function App() {
       await fetch("http://localhost:8000/api", info);
     }
   }
+  getTopics();
 
   return (
     // Using React-Router for Home/Session Pages
@@ -62,7 +65,7 @@ export default function App() {
         <Header className='Header' />
         <div className='App-Body'>
           <Switch>
-            <TopicContext.Provider value={{ topics }}>
+            <TopicContext.Provider value={{ topics, getTopics }}>
               <Route exact path='/'>
                 <div>
                   <ContentBodyParent
