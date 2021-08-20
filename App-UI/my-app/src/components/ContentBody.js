@@ -68,6 +68,7 @@ export default function ContentBody({ topic, getTopics, id }) {
         </div>
       ) : (
         <div>
+          {/*  */}
           <input onInput={inputChangeHandler}></input>
           <button onClick={submitTopicTitleChange}>Submit Change</button>
         </div>
