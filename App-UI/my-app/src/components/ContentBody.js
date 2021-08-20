@@ -59,7 +59,8 @@ export default function ContentBody({ topic, getTopics, id }) {
             </p>
           </div>
           <div className='Bottom-Card-Portion'>
-            <div className='Bottom-Card-Portion-Text'>vote</div>
+            {/* This is where the voting element will live...
+            <div className='Bottom-Card-Portion-Text'>vote</div>*/}
             <div className='Bottom-Card-Portion-Text2' onClick={deleteTopic}>
               delete
             </div>
