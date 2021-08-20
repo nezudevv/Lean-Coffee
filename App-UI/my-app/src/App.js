@@ -55,7 +55,6 @@ export default function App() {
       await fetch("http://localhost:8000/api", info);
     }
   }
-  getTopics();
 
   return (
     // Using React-Router for Home/Session Pages

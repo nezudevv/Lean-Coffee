@@ -95,12 +95,12 @@ $primary-font-color: rgb(228, 228, 228);
   justify-content: space-between;
   align-items: center;
   .Bottom-Card-Portion-Text {
-    font-size: 20px;
-    margin-left: 8px;
   }
   .Bottom-Card-Portion-Text2 {
     font-weight: lighter;
-    margin-right: 5px;
+    margin-right: 12px;
+    width: 100%;
+    text-align: right;
   }
 }
 
