@@ -25,7 +25,7 @@ app.get("/api/topics", async (request, response) => {
 app.post("/api/", async (req, res) => {
   const topic = req.body;
   try {
-    const newTopic = await addOrUpdateTopic(topic);
+    addOrUpdateTopic(topic);
   } catch (err) {
     console.log(err);
   }

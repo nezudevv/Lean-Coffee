@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+
 import axios from "axios";
 export default function ContentBody({ topic, getTopics, id }) {
   // State
   const [inputChange, setInputChange] = useState("");
   const [isTopicClicked, setIsTopicClicked] = useState(false);
-  //Functions
 
+  //Functions
   function deleteTopic() {
     try {
       axios.delete(`http://localhost:8000/api/${topic.id}`);

@@ -1,14 +1,11 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import { TopicContext } from "../Contexts/TopicContext";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 import { v4 as uuidv4 } from "uuid";
 
 export default function DragandDropContainer() {
-  const { topics, getTopics } = useContext(TopicContext);
+  const { topics } = useContext(TopicContext);
 
-  useEffect(() => {
-    getTopics();
-  }, []);
   console.log("topics: ", topics);
   const columnsFromBackend = {
     [uuidv4()]: {

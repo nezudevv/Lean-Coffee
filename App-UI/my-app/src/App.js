@@ -15,16 +15,18 @@ export default function App() {
   // State
   const [topics, setTopics] = useState([]);
   const [topicInput, setTopicInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     getTopics();
   }, []);
 
-  // Functions;
+  // Functions
   async function getTopics() {
     try {
       const response = await axios.get("http://localhost:8000/api/topics");
       const topics = await response.data;
+      setIsLoading(true);
       setTopics(topics.Items);
     } catch (err) {
       console.log("Did not fetch topics: ", err);
@@ -41,19 +43,19 @@ export default function App() {
       topicTitle: topicInput,
     };
     setTopicInput("");
-    if (topicInput === "") {
-      alert("Field must not be empty.");
-    } else {
-      console.log(newTopic);
-      const info = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newTopic),
-      };
-      await fetch("http://localhost:8000/api", info);
-    }
+
+    console.log(newTopic);
+    const info = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newTopic),
+    };
+    getTopics();
+    await fetch("http://localhost:8000/api", info);
+
+    console.log("clicked");
   }
 
   return (
@@ -64,13 +66,12 @@ export default function App() {
         <Header className='Header' />
         <div className='App-Body'>
           <Switch>
-            <TopicContext.Provider value={{ topics, getTopics }}>
+            <TopicContext.Provider value={{ topics, isLoading, getTopics }}>
               <Route exact path='/'>
                 <div>
                   <ContentBodyParent
                     className='Topic-Child-Container'
                     createTopic={createTopic}
-                    getTopics={getTopics}
                     input={topicInput}
                     topicInputHandler={topicInputHandler}
                   />

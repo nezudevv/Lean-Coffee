@@ -4,12 +4,11 @@ import ContentBody from "./ContentBody";
 import { Link } from "react-router-dom";
 export default function ContentBodyParent({
   createTopic,
-  getTopics,
   input,
   topicInputHandler,
 }) {
   // const topicContext = useContext(TopicContext);
-  const { topics } = useContext(TopicContext);
+  const { topics, isLoading, getTopics } = useContext(TopicContext);
   return (
     <div className='Main-Topic-Container'>
       <div className='Topic-Submit-Wrapper'>
@@ -33,7 +32,16 @@ export default function ContentBodyParent({
         <div className='Topic-Child-Container2'>
           {topics.map(topic => (
             <div className='Card-Topics-Container' key={topic.id}>
-              <ContentBody id={topic.id} topic={topic} getTopics={getTopics} />
+              {isLoading ? (
+                <ContentBody
+                  id={topic.id}
+                  topic={topic}
+                  getTopics={getTopics}
+                  isLoading={isLoading}
+                />
+              ) : (
+                <div>Loading shit</div>
+              )}
             </div>
           ))}
         </div>
