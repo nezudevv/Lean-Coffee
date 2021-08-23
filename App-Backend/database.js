@@ -17,6 +17,7 @@ const getTopics = async () => {
   const params = {
     TableName: TABLE_NAME,
   };
+  //  const topics = await dynamoClient.scan(params).promise(); whydo i need the .promise()????
   const topics = await dynamoClient.scan(params).promise();
   console.log(topics);
   return topics;

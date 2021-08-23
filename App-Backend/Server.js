@@ -24,6 +24,7 @@ app.get("/api/topics", async (request, response) => {
 //Posting (possibly updated) topic data to database
 app.post("/api/", async (req, res) => {
   const topic = req.body;
+  res.send("you there");
   try {
     addOrUpdateTopic(topic);
   } catch (err) {

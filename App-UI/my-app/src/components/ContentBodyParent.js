@@ -32,7 +32,7 @@ export default function ContentBodyParent({
         <div className='Topic-Child-Container2'>
           {topics.map(topic => (
             <div className='Card-Topics-Container' key={topic.id}>
-              {isLoading ? (
+              {!isLoading ? (
                 <ContentBody
                   id={topic.id}
                   topic={topic}
@@ -40,7 +40,7 @@ export default function ContentBodyParent({
                   isLoading={isLoading}
                 />
               ) : (
-                <div>Loading shit</div>
+                <div>Loading Topics</div>
               )}
             </div>
           ))}

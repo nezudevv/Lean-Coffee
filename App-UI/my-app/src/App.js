@@ -24,10 +24,12 @@ export default function App() {
   // Functions
   async function getTopics() {
     try {
-      const response = await axios.get("http://localhost:8000/api/topics");
-      const topics = await response.data;
       setIsLoading(true);
-      setTopics(topics.Items);
+      await axios
+        .get("http://localhost:8000/api/topics")
+        .then(response => response.data)
+        .then(res => setTopics(res.Items))
+        .then(setIsLoading(false));
     } catch (err) {
       console.log("Did not fetch topics: ", err);
     }
@@ -39,24 +41,23 @@ export default function App() {
   }
 
   async function createTopic() {
-    const newTopic = {
-      id: uuidv4().toString(),
-      topicTitle: topicInput,
-    };
-    setTopicInput("");
-
-    console.log(newTopic);
-    const info = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newTopic),
-    };
-    getTopics();
-    await fetch("http://localhost:8000/api", info);
-
-    console.log("clicked");
+    if (topicInput === "") {
+      alert("Topic cannot be empty.");
+    } else {
+      try {
+        const newTopic = {
+          id: uuidv4().toString(),
+          topicTitle: topicInput,
+        };
+        setTopicInput("");
+        console.log("before");
+        await axios.post("http://localhost:8000/api", newTopic);
+        console.log("after");
+        await getTopics();
+      } catch (err) {
+        console.log("error with 'createTopic()': ", err);
+      }
+    }
   }
 
   return (
