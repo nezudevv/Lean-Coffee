@@ -62,7 +62,7 @@ export default function App() {
 
   return (
     // Using React-Router for Home/Session Pages
-
+    // Material UI for styling
     <div className='App'>
       <Router>
         <Header className='Header' />
