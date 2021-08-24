@@ -11,6 +11,8 @@ import ContentBodyParent from "./components/ContentBodyParent.js";
 import DiscussionSession from "./components/DiscussionSession.js";
 import { TopicContext } from "./components/Contexts/TopicContext";
 
+import { ThemeProvider } from "@material-ui/core";
+
 export default function App() {
   // State
   const [topics, setTopics] = useState([]);
@@ -62,30 +64,33 @@ export default function App() {
 
   return (
     // Using React-Router for Home/Session Pages
-
-    <div className='App'>
-      <Router>
-        <Header className='Header' />
-        <div className='App-Body'>
-          <Switch>
-            <TopicContext.Provider value={{ topics, isLoading, getTopics }}>
-              <Route exact path='/'>
-                <div>
-                  <ContentBodyParent
-                    className='Topic-Child-Container'
-                    createTopic={createTopic}
-                    input={topicInput}
-                    topicInputHandler={topicInputHandler}
-                  />
-                </div>
-              </Route>
-              <Route exact path='/discussion'>
-                <DiscussionSession />
-              </Route>
-            </TopicContext.Provider>
-          </Switch>
-        </div>
-      </Router>
-    </div>
+    <>
+      <ThemeProvider>
+        {/* <div className='App'> */}
+        <Router>
+          <Header className='Header' />
+          <div className='App-Body'>
+            <Switch>
+              <TopicContext.Provider value={{ topics, isLoading, getTopics }}>
+                <Route exact path='/'>
+                  <div>
+                    <ContentBodyParent
+                      className='Topic-Child-Container'
+                      createTopic={createTopic}
+                      input={topicInput}
+                      topicInputHandler={topicInputHandler}
+                    />
+                  </div>
+                </Route>
+                <Route exact path='/discussion'>
+                  <DiscussionSession />
+                </Route>
+              </TopicContext.Provider>
+            </Switch>
+          </div>
+        </Router>
+        {/* </div> */}
+      </ThemeProvider>
+    </>
   );
 }
