@@ -22,6 +22,7 @@ export default function App() {
   }, []);
 
   // Functions
+  // Fetching data
   async function getTopics() {
     try {
       setIsLoading(true);
