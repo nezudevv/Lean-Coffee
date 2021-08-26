@@ -82,6 +82,7 @@ export default function App() {
 
   return (
     // Using React-Router for Home/Session Pages
+Implenting-Material-UI
     <>
       <Container maxWidth='md' bgcolor='primary'>
         {/* <div className='App'> */}
@@ -112,5 +113,31 @@ export default function App() {
         {/* </div> */}
       </Container>
     </>
+    // Material UI for styling
+    <div className='App'>
+      <Router>
+        <Header className='Header' />
+        <div className='App-Body'>
+          <Switch>
+            <TopicContext.Provider value={{ topics, isLoading, getTopics }}>
+              <Route exact path='/'>
+                <div>
+                  <ContentBodyParent
+                    className='Topic-Child-Container'
+                    createTopic={createTopic}
+                    input={topicInput}
+                    topicInputHandler={topicInputHandler}
+                  />
+                </div>
+              </Route>
+              <Route exact path='/discussion'>
+                <DiscussionSession />
+              </Route>
+            </TopicContext.Provider>
+          </Switch>
+        </div>
+      </Router>
+    </div>
+
   );
 }
