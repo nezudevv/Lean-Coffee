@@ -11,6 +11,26 @@ import ContentBodyParent from "./components/ContentBodyParent.js";
 import DiscussionSession from "./components/DiscussionSession.js";
 import { TopicContext } from "./components/Contexts/TopicContext";
 
+import { Container, createTheme } from "@material-ui/core";
+import { red } from "@material-ui/core/colors";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#556cd6",
+    },
+    secondary: {
+      main: "#19857b",
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      default: "#fff",
+    },
+  },
+});
+
 export default function App() {
   // State
   const [topics, setTopics] = useState([]);
@@ -39,7 +59,7 @@ export default function App() {
   function topicInputHandler(e) {
     setTopicInput(e.target.value);
   }
-
+  // make post -- gives me response. I update ui using react
   async function createTopic() {
     if (topicInput === "") {
       alert("Topic cannot be empty.");
@@ -62,6 +82,37 @@ export default function App() {
 
   return (
     // Using React-Router for Home/Session Pages
+Implenting-Material-UI
+    <>
+      <Container maxWidth='md' bgcolor='primary'>
+        {/* <div className='App'> */}
+        <Router>
+          <Header className='Header' />
+          <div className='App-Body'>
+            <Switch>
+              <TopicContext.Provider
+                value={{ topics, isLoading, getTopics, setIsLoading }}
+              >
+                <Route exact path='/'>
+                  <div>
+                    <ContentBodyParent
+                      className='Topic-Child-Container'
+                      createTopic={createTopic}
+                      input={topicInput}
+                      topicInputHandler={topicInputHandler}
+                    />
+                  </div>
+                </Route>
+                <Route exact path='/discussion'>
+                  <DiscussionSession />
+                </Route>
+              </TopicContext.Provider>
+            </Switch>
+          </div>
+        </Router>
+        {/* </div> */}
+      </Container>
+    </>
     // Material UI for styling
     <div className='App'>
       <Router>
@@ -87,5 +138,6 @@ export default function App() {
         </div>
       </Router>
     </div>
+
   );
 }

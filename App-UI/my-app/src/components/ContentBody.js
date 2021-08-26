@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 import axios from "axios";
-export default function ContentBody({ topic, getTopics, id }) {
+export default function ContentBody({ topic, getTopics, id, setIsLoading }) {
   // State
   const [inputChange, setInputChange] = useState("");
   const [isTopicClicked, setIsTopicClicked] = useState(false);
@@ -9,8 +9,11 @@ export default function ContentBody({ topic, getTopics, id }) {
   //Functions
   async function deleteTopic() {
     try {
-      await axios.delete(`http://localhost:8000/api/${topic.id}`);
-      await getTopics();
+      await setIsLoading(true);
+      await axios
+        .delete(`http://localhost:8000/api/${topic.id}`)
+        .then(getTopics())
+        .then(setIsLoading(false));
     } catch (err) {
       console.log(err);
     }
