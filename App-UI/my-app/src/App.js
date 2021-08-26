@@ -11,7 +11,25 @@ import ContentBodyParent from "./components/ContentBodyParent.js";
 import DiscussionSession from "./components/DiscussionSession.js";
 import { TopicContext } from "./components/Contexts/TopicContext";
 
-import { ThemeProvider } from "@material-ui/core";
+import { Container, createTheme } from "@material-ui/core";
+import { red } from "@material-ui/core/colors";
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: "#556cd6",
+    },
+    secondary: {
+      main: "#19857b",
+    },
+    error: {
+      main: red.A400,
+    },
+    background: {
+      default: "#fff",
+    },
+  },
+});
 
 export default function App() {
   // State
@@ -41,7 +59,7 @@ export default function App() {
   function topicInputHandler(e) {
     setTopicInput(e.target.value);
   }
-
+  // make post -- gives me response. I update ui using react
   async function createTopic() {
     if (topicInput === "") {
       alert("Topic cannot be empty.");
@@ -65,13 +83,15 @@ export default function App() {
   return (
     // Using React-Router for Home/Session Pages
     <>
-      <ThemeProvider>
+      <Container maxWidth='md' bgcolor='primary'>
         {/* <div className='App'> */}
         <Router>
           <Header className='Header' />
           <div className='App-Body'>
             <Switch>
-              <TopicContext.Provider value={{ topics, isLoading, getTopics }}>
+              <TopicContext.Provider
+                value={{ topics, isLoading, getTopics, setIsLoading }}
+              >
                 <Route exact path='/'>
                   <div>
                     <ContentBodyParent
@@ -90,7 +110,7 @@ export default function App() {
           </div>
         </Router>
         {/* </div> */}
-      </ThemeProvider>
+      </Container>
     </>
   );
 }
