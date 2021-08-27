@@ -42,7 +42,7 @@ export default function ContentBodyParent({
                   setIsLoading={setIsLoading}
                 />
               ) : (
-                <div>Loading Topics</div>
+                <div style={{ color: "black" }}>Loading Topics</div>
               )}
             </div>
           ))}

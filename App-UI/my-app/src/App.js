@@ -66,15 +66,27 @@ export default function App() {
       alert("Topic cannot be empty.");
     } else {
       try {
+        setIsLoading(true);
         const newTopic = {
           id: uuidv4().toString(),
           topicTitle: topicInput,
         };
         setTopicInput("");
-        console.log("before");
-        await axios.post("http://localhost:8000/api", newTopic);
-        console.log("after");
-        await getTopics();
+        await axios
+          .post("http://localhost:8000/api", newTopic)
+          .then(res => {
+            setIsLoading(false);
+            console.log(res);
+            return res;
+          })
+          .then(res => {
+            // make sure update happened. Only update the ui if the
+            // DB has been updated. if not, show error.
+            console.log("foobar", res);
+            const updatedTopics = [...topics, newTopic];
+            setTopics(updatedTopics);
+          });
+        // .then(getTopics());
       } catch (err) {
         console.log("error with 'createTopic()': ", err);
       }
@@ -83,10 +95,9 @@ export default function App() {
 
   return (
     // Using React-Router for Home/Session Pages
-Implenting-Material-UI
+    // Implenting-Material-UI
     <>
-      <Container maxWidth='md' bgcolor='primary'>
-        {/* <div className='App'> */}
+      <Container theme={theme} maxWidth='md' bgcolor='primary'>
         <Router>
           <Header className='Header' />
           <div className='App-Body'>
@@ -111,34 +122,7 @@ Implenting-Material-UI
             </Switch>
           </div>
         </Router>
-        {/* </div> */}
       </Container>
     </>
-    // Material UI for styling
-    <div className='App'>
-      <Router>
-        <Header className='Header' />
-        <div className='App-Body'>
-          <Switch>
-            <TopicContext.Provider value={{ topics, isLoading, getTopics }}>
-              <Route exact path='/'>
-                <div>
-                  <ContentBodyParent
-                    className='Topic-Child-Container'
-                    createTopic={createTopic}
-                    input={topicInput}
-                    topicInputHandler={topicInputHandler}
-                  />
-                </div>
-              </Route>
-              <Route exact path='/discussion'>
-                <DiscussionSession />
-              </Route>
-            </TopicContext.Provider>
-          </Switch>
-        </div>
-      </Router>
-    </div>
-
   );
 }
