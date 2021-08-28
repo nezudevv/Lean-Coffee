@@ -98,6 +98,7 @@ export default function App() {
     // Using React-Router for Home/Session Pages
     // Implenting-Material-UI
     <>
+      {/* wrapping app in container to test how to use material ui */}
       <Container theme={theme} maxWidth='md' bgcolor='primary'>
         <Router>
           <Header className='Header' />
