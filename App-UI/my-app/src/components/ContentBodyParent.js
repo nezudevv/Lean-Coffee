@@ -8,7 +8,7 @@ export default function ContentBodyParent({
   topicInputHandler,
 }) {
   // const topicContext = useContext(TopicContext);
-  const { topics, isLoading, getTopics, setIsLoading } =
+  const { topics, isLoading, getTopics, setIsLoading, setTopics } =
     useContext(TopicContext);
   return (
     <div className='Main-Topic-Container'>
@@ -40,6 +40,8 @@ export default function ContentBodyParent({
                   getTopics={getTopics}
                   isLoading={isLoading}
                   setIsLoading={setIsLoading}
+                  setTopics={setTopics}
+                  topics={topics}
                 />
               ) : (
                 <div style={{ color: "black" }}>Loading Topics</div>

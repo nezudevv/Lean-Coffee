@@ -77,7 +77,6 @@ export default function App() {
           .post("http://localhost:8000/api", newTopic)
           .then(res => {
             setIsLoading(false);
-            console.log(res);
             return res;
           })
           .then(res => {
@@ -105,7 +104,13 @@ export default function App() {
           <div className='App-Body'>
             <Switch>
               <TopicContext.Provider
-                value={{ topics, isLoading, getTopics, setIsLoading }}
+                value={{
+                  topics,
+                  isLoading,
+                  getTopics,
+                  setIsLoading,
+                  setTopics,
+                }}
               >
                 <Route exact path='/'>
                   <div>

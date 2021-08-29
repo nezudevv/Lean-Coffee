@@ -1,19 +1,24 @@
 import React, { useState } from "react";
-
 import axios from "axios";
-export default function ContentBody({ topic, getTopics, id, setIsLoading }) {
+
+export default function ContentBody({
+  topic,
+  getTopics,
+  id,
+  setIsLoading,
+  setTopics,
+  topics,
+}) {
   // State
   const [inputChange, setInputChange] = useState("");
   const [isTopicClicked, setIsTopicClicked] = useState(false);
 
   //Functions
-  async function deleteTopic() {
+  async function deleteTopic(itemId) {
     try {
-      await setIsLoading(true);
-      await axios
-        .delete(`http://localhost:8000/api/${topic.id}`)
-        .then(getTopics())
-        .then(setIsLoading(false));
+      await axios.delete(`http://localhost:8000/api/${topic.id}`);
+      const newArr = await topics.filter(item => item.id !== itemId);
+      await setTopics(newArr);
     } catch (err) {
       console.log(err);
     }
@@ -37,10 +42,6 @@ export default function ContentBody({ topic, getTopics, id, setIsLoading }) {
     }
   }
 
-  function changeTopicClickedToFalse() {
-    setIsTopicClicked(false);
-  }
-
   return (
     <div key={id}>
       {!isTopicClicked ? (
@@ -58,7 +59,10 @@ export default function ContentBody({ topic, getTopics, id, setIsLoading }) {
           <div className='Bottom-Card-Portion'>
             {/* This is where the voting element will live...
             <div className='Bottom-Card-Portion-Text'>vote</div>*/}
-            <div className='Bottom-Card-Portion-Text2' onClick={deleteTopic}>
+            <div
+              onClick={() => deleteTopic(id)}
+              className='Bottom-Card-Portion-Text2'
+            >
               delete
             </div>
           </div>
@@ -66,12 +70,7 @@ export default function ContentBody({ topic, getTopics, id, setIsLoading }) {
       ) : (
         <div className='Card-Topics-Wrapper'>
           <div className='Card-Topics'>
-            <p
-              className='Card-Title'
-              onClick={() => {
-                setIsTopicClicked(true);
-              }}
-            >
+            <p className='Card-Title'>
               <input onInput={inputChangeHandler}></input>
               <button onClick={submitTopicTitleChange}>Submit Change</button>
             </p>
@@ -79,9 +78,7 @@ export default function ContentBody({ topic, getTopics, id, setIsLoading }) {
           <div className='Bottom-Card-Portion'>
             {/* This is where the voting element will live...
             <div className='Bottom-Card-Portion-Text'>vote</div>*/}
-            <div className='Bottom-Card-Portion-Text2' onClick={deleteTopic}>
-              delete
-            </div>
+            <div className='Bottom-Card-Portion-Text2'>delete</div>
           </div>
         </div>
       )}
