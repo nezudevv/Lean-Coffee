@@ -28,14 +28,23 @@ export default function ContentBody({
     setInputChange(e.target.value);
   }
 
-  async function submitTopicTitleChange() {
+  async function submitTopicTitleChange(topicId) {
     if (inputChange === "") {
       alert("Field must not be empty.");
     } else {
       try {
         const updatedTopic = { topicTitle: inputChange };
         await axios.post(`http://localhost:8000/api/topic/${id}`, updatedTopic);
-        getTopics();
+        const updatedItem = await topics.map(item => {
+          if (item.id === topicId) {
+            const items = { ...item, topicTitle: inputChange };
+            return items;
+          }
+          return item;
+        });
+        console.log(updatedItem);
+        setTopics(updatedItem);
+        setIsTopicClicked(false);
       } catch (err) {
         console.log(err);
       }
@@ -72,7 +81,9 @@ export default function ContentBody({
           <div className='Card-Topics'>
             <p className='Card-Title'>
               <input onInput={inputChangeHandler}></input>
-              <button onClick={submitTopicTitleChange}>Submit Change</button>
+              <button onClick={() => submitTopicTitleChange(id)}>
+                Submit Change
+              </button>
             </p>
           </div>
           <div className='Bottom-Card-Portion'>
