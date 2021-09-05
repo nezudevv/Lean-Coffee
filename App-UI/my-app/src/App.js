@@ -61,6 +61,7 @@ export default function App() {
     setTopicInput(e.target.value);
   }
   // make post -- gives me response. I update ui using react
+  // this function makes use of optimistic ui concepts..
   async function createTopic() {
     if (topicInput === "") {
       alert("Topic cannot be empty.");
