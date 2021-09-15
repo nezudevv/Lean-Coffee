@@ -11,5 +11,11 @@
     "dotenv": "^10.0.0",
     "env": "^0.0.2",
     "express": "^4.17.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   }
 }

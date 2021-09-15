@@ -11,26 +11,6 @@ import ContentBodyParent from "./components/ContentBodyParent.js";
 import DiscussionSession from "./components/DiscussionSession.js";
 import { TopicContext } from "./components/Contexts/TopicContext";
 
-import { Container, createTheme } from "@material-ui/core";
-import { red } from "@material-ui/core/colors";
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: "#556cd6",
-    },
-    secondary: {
-      main: "#19857b",
-    },
-    error: {
-      main: red.A400,
-    },
-    background: {
-      default: "#fff",
-    },
-  },
-});
-
 export default function App() {
   // State
   const [topics, setTopics] = useState([]);
@@ -44,15 +24,16 @@ export default function App() {
   // Functions
   // Fetching data
   async function getTopics() {
+    setIsLoading(true);
     try {
-      setIsLoading(true);
       await axios
         .get("http://localhost:8000/api/topics")
         .then(response => response.data)
-        .then(res => setTopics(res.Items))
-        .then(setIsLoading(false));
+        .then(res => setTopics(res.Items));
     } catch (err) {
       console.log("Did not fetch topics: ", err);
+    } finally {
+      setIsLoading(false);
     }
   }
 
@@ -95,41 +76,37 @@ export default function App() {
 
   return (
     // Using React-Router for Home/Session Pages
-    // Implenting-Material-UI
     <>
-      {/* wrapping app in container to test how to use material ui */}
-      <Container theme={theme} maxWidth='md' bgcolor='primary'>
-        <Router>
-          <Header className='Header' />
-          <div className='App-Body'>
-            <Switch>
-              <TopicContext.Provider
-                value={{
-                  topics,
-                  isLoading,
-                  getTopics,
-                  setIsLoading,
-                  setTopics,
-                }}
-              >
-                <Route exact path='/'>
-                  <div>
-                    <ContentBodyParent
-                      className='Topic-Child-Container'
-                      createTopic={createTopic}
-                      input={topicInput}
-                      topicInputHandler={topicInputHandler}
-                    />
-                  </div>
-                </Route>
-                <Route exact path='/discussion'>
-                  <DiscussionSession />
-                </Route>
-              </TopicContext.Provider>
-            </Switch>
-          </div>
-        </Router>
-      </Container>
+      <Router>
+        <Header className='Header' />
+        <div className='App-Body'>
+          <Switch>
+            <TopicContext.Provider
+              value={{
+                topics,
+                isLoading,
+                getTopics,
+                setIsLoading,
+                setTopics,
+              }}
+            >
+              <Route exact path='/'>
+                <div>
+                  <ContentBodyParent
+                    className='Topic-Child-Container'
+                    createTopic={createTopic}
+                    input={topicInput}
+                    topicInputHandler={topicInputHandler}
+                  />
+                </div>
+              </Route>
+              <Route exact path='/discussion'>
+                <DiscussionSession />
+              </Route>
+            </TopicContext.Provider>
+          </Switch>
+        </div>
+      </Router>
     </>
   );
 }
