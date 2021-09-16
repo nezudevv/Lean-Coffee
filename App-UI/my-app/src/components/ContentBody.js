@@ -15,13 +15,15 @@ export default function ContentBody({
 
   //Functions
   async function deleteTopic(itemId) {
-    try {
-      await axios.delete(`http://localhost:8000/api/${topic.id}`);
-      const newArr = await topics.filter(item => item.id !== itemId);
-      await setTopics(newArr);
-    } catch (err) {
-      console.log(err);
-    }
+    // try {
+    //   await axios.delete(`http://localhost:8000/api/${topic.id}`);
+    //   const newArr = await topics.filter(item => item.id !== itemId);
+    //   await setTopics(newArr);
+    // } catch (err) {
+    //   console.log(err);
+    // }
+    const newArr = topics.filter(item => item.id !== itemId);
+    setTopics(newArr);
   }
 
   function inputChangeHandler(e) {

@@ -3,12 +3,8 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-AWS.config.update({
-  region: "us-east-2",
-  endpoint: "dynamodb.us-east-2.amazonaws.com",
-  accessKeyId: process.env.ACCESS_KEY_ID,
-  secretAccessKey: process.env.SECRET_ACCESS_KEY,
-});
+// * This is where AWS.config.update lives. Removed for public use of the app-- implementing
+// * serverless--Lambda
 
 const dynamoClient = new AWS.DynamoDB.DocumentClient();
 const TABLE_NAME = "Lean-Coffee";

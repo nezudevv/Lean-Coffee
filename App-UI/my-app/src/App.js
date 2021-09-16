@@ -24,7 +24,6 @@ export default function App() {
   // Functions
   // Fetching data
   async function getTopics() {
-    setIsLoading(true);
     try {
       await axios
         .get("http://localhost:8000/api/topics")
@@ -33,7 +32,6 @@ export default function App() {
     } catch (err) {
       console.log("Did not fetch topics: ", err);
     } finally {
-      setIsLoading(false);
     }
   }
 
