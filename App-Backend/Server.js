@@ -12,7 +12,6 @@ app.use(express.json());
 
 // Getting topic data from database.
 app.get("/api/topics", async (request, response) => {
-  console.log(response.body);
   try {
     const topics = await getTopics();
     response.json(topics);
@@ -43,10 +42,17 @@ app.delete("/api/:id", async (req, res) => {
 });
 
 app.post("/api/topic/:id", async (req, res) => {
+  // req.body is the topic
   const topic = req.body;
+  console.log("topic: ", req.body);
+  // params grabs the id passed
   const { id } = req.params;
-  console.log(req.body);
+  console.log("params/ID", req.params);
+  // Since we are dealing with objects, The code below will add
+  // ID to the TOPIC object.
   topic.id = id;
+  console.log("topic", topic);
+
   try {
     const updatedTopic = await addOrUpdateTopic(topic);
     res.json(updatedTopic);

@@ -1,6 +1,4 @@
 **/.DS_Store
 **/config.js
 
-node_modules
-
 App-Backend/.env

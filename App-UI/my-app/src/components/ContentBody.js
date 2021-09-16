@@ -35,6 +35,7 @@ export default function ContentBody({
       try {
         const updatedTopic = { topicTitle: inputChange };
         await axios.post(`http://localhost:8000/api/topic/${id}`, updatedTopic);
+        // Implementing optimistic ui concepts
         const updatedItem = await topics.map(item => {
           if (item.id === topicId) {
             const items = { ...item, topicTitle: inputChange };
@@ -66,8 +67,8 @@ export default function ContentBody({
             </p>
           </div>
           <div className='Bottom-Card-Portion'>
-            {/* This is where the voting element will live...
-            <div className='Bottom-Card-Portion-Text'>vote</div>*/}
+            {/* This is where the voting element will live...*/}
+            {/* <div className='Bottom-Card-Portion-Text'>vote</div> */}
             <div
               onClick={() => deleteTopic(id)}
               className='Bottom-Card-Portion-Text2'
@@ -87,8 +88,8 @@ export default function ContentBody({
             </p>
           </div>
           <div className='Bottom-Card-Portion'>
-            {/* This is where the voting element will live...
-            <div className='Bottom-Card-Portion-Text'>vote</div>*/}
+            {/* This is where the voting element will live...*/}
+            {/* <div className='Bottom-Card-Portion-Text'>vote</div> */}
             <div className='Bottom-Card-Portion-Text2'>delete</div>
           </div>
         </div>
