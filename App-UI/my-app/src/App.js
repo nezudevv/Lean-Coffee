@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
+// Styles
 import "./Styles/App.scss";
 import "./Styles/Reset.css";
 import "./Styles/Header.scss";
 import "./Styles/ContentBody.scss";
+// Components/Functions/StateManagement
 import Header from "./components/Header.js";
 import ContentBodyParent from "./components/ContentBodyParent.js";
 import DiscussionSession from "./components/DiscussionSession.js";
@@ -65,7 +67,6 @@ export default function App() {
             const updatedTopics = [...topics, newTopic];
             setTopics(updatedTopics);
           });
-        // .then(getTopics());
       } catch (err) {
         console.log("error with 'createTopic()': ", err);
       }

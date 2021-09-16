@@ -1,14 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+// import axios from "axios";
 
-export default function ContentBody({
-  topic,
-  getTopics,
-  id,
-  setIsLoading,
-  setTopics,
-  topics,
-}) {
+export default function ContentBody({ topic, id, setTopics, topics }) {
   // State
   const [inputChange, setInputChange] = useState("");
   const [isTopicClicked, setIsTopicClicked] = useState(false);
@@ -22,6 +15,7 @@ export default function ContentBody({
     // } catch (err) {
     //   console.log(err);
     // }
+    // This is used unitl serverless functions are set up
     const newArr = topics.filter(item => item.id !== itemId);
     setTopics(newArr);
   }
@@ -35,8 +29,8 @@ export default function ContentBody({
       alert("Field must not be empty.");
     } else {
       try {
-        const updatedTopic = { topicTitle: inputChange };
-        await axios.post(`http://localhost:8000/api/topic/${id}`, updatedTopic);
+        // const updatedTopic = { topicTitle: inputChange };
+        // await axios.post(`http://localhost:8000/api/topic/${id}`, updatedTopic);
         // Implementing optimistic ui concepts
         const updatedItem = await topics.map(item => {
           if (item.id === topicId) {

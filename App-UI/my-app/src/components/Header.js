@@ -6,7 +6,9 @@ export default function Header() {
     <div className='Header-Container'>
       <div className='Header-Content-Wrapper'>
         <div className='Home-Nav'>
-          <Link to='/'>Home</Link>
+          <Link to='/' className='home-button'>
+            Home
+          </Link>
         </div>
         <div className='Login-Nav'>{/* <Link to='/discussion'></Link> */}</div>
       </div>

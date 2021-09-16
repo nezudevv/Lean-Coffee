@@ -6,8 +6,6 @@ $primary-font-color: rgb(228, 228, 228);
   width: 100%;
 }
 
-.Main-Topic-Container {
-}
 .Topic-Submit-Wrapper {
   display: flex;
   flex-direction: column;
@@ -50,9 +48,7 @@ $primary-font-color: rgb(228, 228, 228);
   color: $primary-font-color;
   font-weight: bold;
 }
-.Card-Topics-Container {
-  // border: solid blue;
-}
+
 .Card-Title {
   margin: 15px;
   font-size: 19px;
@@ -94,8 +90,7 @@ $primary-font-color: rgb(228, 228, 228);
   border-width: 2px;
   justify-content: space-between;
   align-items: center;
-  .Bottom-Card-Portion-Text {
-  }
+
   .Bottom-Card-Portion-Text2 {
     font-weight: lighter;
     margin-right: 12px;
