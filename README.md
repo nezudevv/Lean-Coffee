@@ -3,6 +3,7 @@
 # Lean-Coffee
 This is my Lean Coffee app. The layout is inspired by several apps on the market but all of the code is my own. Nothing is copy/pasted.
 
+# Currently implementing serverless functions using AWS Lambda
 This project is used to further solidify my knowledge in designing and creating fullstack apps. 
 
 
