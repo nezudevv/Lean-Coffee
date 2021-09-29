@@ -48,25 +48,17 @@ export default function App() {
       alert("Topic cannot be empty.");
     } else {
       try {
-        setIsLoading(true);
         const newTopic = {
           id: uuidv4().toString(),
           topicTitle: topicInput,
         };
         setTopicInput("");
-        await axios
-          .post("http://localhost:8000/api", newTopic)
-          .then(res => {
-            setIsLoading(false);
-            return res;
-          })
-          .then(res => {
-            // make sure update happened. Only update the ui if the
-            // DB has been updated. if not, show error.
-            console.log("foobar", res);
-            const updatedTopics = [...topics, newTopic];
-            setTopics(updatedTopics);
-          });
+        await axios.post("http://localhost:8000/api", newTopic).then(res => {
+          // make sure update happened. Only update the ui if the
+          // DB has been updated. if not, show error.
+          const updatedTopics = [...topics, newTopic];
+          setTopics(updatedTopics);
+        });
       } catch (err) {
         console.log("error with 'createTopic()': ", err);
       }
