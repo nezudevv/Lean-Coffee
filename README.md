@@ -9,8 +9,8 @@ This project is used to further solidify my knowledge in designing and creating 
 
 REACT
 * axios
-* Router
-* Context
+* router
+* context
 
 NODEJS
 * express
