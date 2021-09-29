@@ -1,20 +1,12 @@
 **/.DS_Store
 **/config.js
-
-node_modules
-
+node_modules/
 App-Backend/.env
-.Serverless
-Serverless/.gitignore
-Serverless/event.json
-Serverless/helloworld.js
-Serverless/serverless.yml
-
 snippets
 
 # package directories
 node_modules
 jspm_packages
-
+build/
 # Serverless directories
 .serverless
